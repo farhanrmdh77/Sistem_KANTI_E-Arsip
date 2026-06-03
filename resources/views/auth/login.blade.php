@@ -306,7 +306,7 @@
             @endif
         </div>
         
-        {{-- 🌟 PERBAIKAN: Judul Form Login Dinamis 🌟 --}}
+
         <h2 class="login-title">{{ \App\Models\Setting::getAppName() }}</h2>
 
         {{-- KOTAK PEMBERITAHUAN JIKA LOGIN GAGAL --}}
