@@ -121,7 +121,6 @@
     .btn-t-qr { background: #fdf4ff; color: #a855f7; border-color: #f3e8ff; }
     .btn-t-qr:hover { background: #9333ea; color: #ffffff; border-color: #9333ea; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(147, 51, 234, 0.2); }
 
-    /* 🌟 TOMBOL BARU: EDIT KP 🌟 */
     .btn-t-kp { background: #fefce8; color: #d97706; border-color: #fef08a; }
     .btn-t-kp:hover { background: #d97706; color: #ffffff; border-color: #d97706; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(217, 119, 6, 0.2); }
     
@@ -145,18 +144,52 @@
     .file-box-kosong { background: #f8fafc; border-color: #e2e8f0; }
     .file-box-kosong .file-box-title { color: #64748b; }
 
-    .pagination-wrapper { margin-top: 20px; padding-top: 20px; border-top: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+    /* =======================================================
+       🌟 PAGINATION STYLING (TERPISAH & COKLAT KEEMASAN) 🌟
+       ======================================================= */
+    .pagination-wrapper { margin-top: 25px; padding-top: 20px; border-top: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
     .page-count-text { color: #0f172a; font-weight: 700; }
+    
     .pagination-links nav > div.d-sm-none { display: none !important; } 
-    .pagination-links nav > div.d-none.d-sm-flex { display: flex !important; justify-content: center !important; width: 100%; }
-    .pagination-links nav > div.d-sm-flex > div:first-child { display: none !important; }
+    .pagination-links nav > div.d-none.d-sm-flex { display: flex !important; justify-content: flex-end !important; width: 100%; }
+    .pagination-links nav > div.d-sm-flex > div:first-child { display: none !important; } /* Sembunyikan "Showing to..." bawaan */
     .pagination-links nav > div.d-sm-flex > div:last-child { margin-left: auto; display: flex; justify-content: flex-end; width: 100%; }
     .pagination-links nav { margin: 0; width: 100%; }
-    .pagination { margin-bottom: 0; gap: 4px; flex-wrap: wrap; }
-    .pagination .page-item { margin: 0; }
-    .pagination .page-link { color: #475569; border-color: transparent; border-radius: 8px; font-weight: 600; font-size: 13px; transition: all 0.3s ease; background-color: #f8fafc; padding: 8px 14px;}
-    .pagination .page-link:hover { background-color: rgba(200, 163, 90, 0.1); color: #C8A35A; transform: translateY(-2px); }
-    .pagination .page-item.active .page-link { background-color: #C8A35A; border-color: #C8A35A; color: white; box-shadow: 0 4px 10px rgba(200, 163, 90, 0.3); transform: translateY(-2px); }
+    
+    .pagination { margin-bottom: 0; display: flex; gap: 6px; flex-wrap: wrap; box-shadow: none; }
+    .page-item { margin: 0; }
+    .page-item .page-link {
+        border-radius: 8px !important;
+        margin-left: 0 !important;
+        border: 1px solid #e2e8f0;
+        background-color: #ffffff;
+        color: #64748b;
+        font-weight: 600;
+        font-size: 13px;
+        min-width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        transition: all 0.2s ease;
+    }
+    .page-item .page-link:hover {
+        background-color: #f8fafc;
+        color: #C8A35A;
+        border-color: #cbd5e1;
+    }
+    .page-item.active .page-link {
+        background-color: #C8A35A !important;
+        border-color: #C8A35A !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 10px rgba(200, 163, 90, 0.3);
+    }
+    .page-item.disabled .page-link {
+        background-color: #f8fafc !important;
+        color: #cbd5e1 !important;
+        border-color: #e2e8f0 !important;
+    }
     
     @media (max-width: 768px) {
         .header-banner { padding: 25px 20px; text-align: center; }
@@ -170,6 +203,8 @@
         .search-area { width: 100%; margin: 0; }
         .bottom-bar-actions { flex-direction: column; align-items: stretch; gap: 10px; }
         .entries-capsule { width: 100%; justify-content: space-between; } 
+        .pagination-wrapper { flex-direction: column; align-items: center; text-align: center; gap: 15px; }
+        .pagination-links nav > div.d-sm-flex > div:last-child { justify-content: center !important; margin-left: 0; }
     }
 
     /* =========================================
@@ -182,8 +217,8 @@
     body.dark-mode .ea-table tbody tr { background-color: #0f172a !important; }
     body.dark-mode .ea-table tbody tr:hover { background-color: #1e293b !important; }
     
-    body.dark-mode .ea-table tbody tr:target { background-color: rgba(217, 119, 6, 0.25) !important; border-left-color: #fbbf24 !important; }
-    body.dark-mode .row-target-blink { animation: pulseTargetDark 2s ease-out infinite alternate; }
+    body.dark-mode .ea-table tbody tr:target { background-color: rgba(217, 119, 6, 0.25) !important; border-left-color: #fbbf24 !important; opacity: 1 !important; transform: translateY(0) !important; }
+    body.dark-mode .row-target-blink { animation: pulseTargetDark 2s ease-out infinite alternate !important; opacity: 1 !important; transform: translateY(0) !important; }
     @keyframes pulseTargetDark { 0% { background-color: rgba(217, 119, 6, 0.25); } 100% { background-color: rgba(251, 191, 36, 0.15); } }
 
     body.dark-mode .entries-capsule { background: #1e293b !important; border-color: #334155 !important; }
@@ -207,20 +242,61 @@
     body.dark-mode .status-file-ada:hover { background: #065f46 !important; }
     body.dark-mode .status-file-kosong { background: #1e293b !important; color: #94a3b8 !important; border-color: #334155 !important; }
     
+    /* Tombol Aksi Tabel Mode Gelap */
     body.dark-mode .btn-t-view { background: #1e293b !important; color: #38bdf8 !important; border-color: #334155 !important; }
     body.dark-mode .btn-t-view:hover { background: #0284c7 !important; color: #ffffff !important; border-color: #0284c7 !important; }
     body.dark-mode .btn-t-qr { background: #1e293b !important; color: #c084fc !important; border-color: #334155 !important; }
     body.dark-mode .btn-t-qr:hover { background: #9333ea !important; color: #ffffff !important; border-color: #9333ea !important; }
-    
-    /* Dark Mode Edit KP */
     body.dark-mode .btn-t-kp { background: #1e293b !important; color: #fde047 !important; border-color: #334155 !important; }
     body.dark-mode .btn-t-kp:hover { background: #ca8a04 !important; color: #ffffff !important; border-color: #ca8a04 !important; }
-
     body.dark-mode .btn-t-edit { background: #1e293b !important; color: #94a3b8 !important; border-color: #334155 !important; }
     body.dark-mode .btn-t-edit:hover { background: #475569 !important; color: #ffffff !important; border-color: #475569 !important; }
     body.dark-mode .btn-t-del { background: #1e293b !important; color: #fb7185 !important; border-color: #334155 !important; }
     body.dark-mode .btn-t-del:hover { background: #e11d48 !important; color: #ffffff !important; border-color: #e11d48 !important; }
 
+    /* 🌟 PERBAIKAN: Tombol Atas (Cetak/Tambah) Mode Gelap (Transparan Elegan) 🌟 */
+    body.dark-mode .btn-pdf { background: rgba(225, 29, 72, 0.15) !important; color: #fb7185 !important; border-color: rgba(225, 29, 72, 0.3) !important; }
+    body.dark-mode .btn-pdf:hover { background: #e11d48 !important; color: white !important; border-color: #e11d48 !important; }
+    
+    body.dark-mode .btn-add { background: rgba(16, 185, 129, 0.15) !important; color: #34d399 !important; border-color: rgba(16, 185, 129, 0.3) !important; }
+    body.dark-mode .btn-add:hover { background: #059669 !important; color: white !important; border-color: #059669 !important; }
+    
+    body.dark-mode .btn-back { background: #1e293b !important; color: #cbd5e1 !important; border-color: #334155 !important; }
+    body.dark-mode .btn-back:hover { background: #334155 !important; color: white !important; border-color: #475569 !important; }
+
+    /* 🌟 DARK MODE UNTUK PAGINATION TERPISAH 🌟 */
+    body.dark-mode .pagination-wrapper { border-top-color: #1e293b !important; }
+    
+    body.dark-mode .page-item .page-link { 
+        background-color: #1e293b !important; 
+        border-color: #334155 !important; 
+        color: #cbd5e1 !important; 
+    }
+    body.dark-mode .page-item .page-link:hover {
+        background-color: #334155 !important;
+        color: #ffffff !important;
+    }
+    
+    body.dark-mode .page-item.active .page-link { 
+        background-color: #C8A35A !important; 
+        border-color: #C8A35A !important; 
+        color: #ffffff !important; 
+        box-shadow: 0 4px 10px rgba(200, 163, 90, 0.2) !important;
+    }
+    body.dark-mode .page-item.disabled .page-link { 
+        background-color: #0f172a !important; 
+        color: #475569 !important; 
+        border-color: #1e293b !important; 
+    }
+
+    /* Memastikan Teks Hitungan Halaman Berwarna Terang di Dark Mode */
+    body.dark-mode .ea-table td.col-no,
+    body.dark-mode .ea-table .text-muted,
+    body.dark-mode .page-count-text {
+        color: #f8fafc !important;
+    }
+
+    /* Modal Dark Mode Styling */
     body.dark-mode .modal-content { background: #0f172a !important; border-color: #1e293b !important; }
     body.dark-mode .modal-content .p-4[style*="background: #f8fafc"] { background: #1e293b !important; border-color: #334155 !important; }
     body.dark-mode .detail-item { border-bottom-color: #334155 !important; }
@@ -236,11 +312,6 @@
     body.dark-mode .file-box-kosong .file-box-title { color: #94a3b8 !important; }
     body.dark-mode .file-box-kosong .detail-value { color: #94a3b8 !important; }
     body.dark-mode #modalQR .bg-white { background: #ffffff !important; border-color: #ffffff !important; } 
-    
-    body.dark-mode .ea-table td.col-no,
-    body.dark-mode .ea-table .text-muted {
-        color: #cbd5e1 !important;
-    }
 </style>
 @endpush
 
@@ -441,7 +512,6 @@
                                     </button>
 
                                     @can('admin')
-                                    {{-- 🌟 TOMBOL BARU: Ubah Klasifikasi (KP) Cepat 🌟 --}}
                                     <button type="button" class="btn-t-kp" data-bs-toggle="modal" data-bs-target="#modalEditKP{{ $arsip->id }}" title="Ubah Kode Klasifikasi (KP) Cepat">
                                         <i class="fa-solid fa-tags"></i> Edit KP
                                     </button>
@@ -592,7 +662,7 @@
                             </div>
                         </div>
 
-                        {{-- 🌟 MODAL BARU: UBAH KODE KLASIFIKASI (KP) CEPAT 🌟 --}}
+                        {{-- MODAL UBAH KODE KLASIFIKASI (KP) CEPAT --}}
                         @can('admin')
                         <div class="modal fade" id="modalEditKP{{ $arsip->id }}" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -643,7 +713,7 @@
                     Menampilkan <b class="page-count-text">{{ $arsips->firstItem() ?? 0 }}</b> hingga <b class="page-count-text">{{ $arsips->lastItem() ?? 0 }}</b> dari total <b class="page-count-text">{{ $arsips->total() }}</b> entri arsip.
                 </div>
                 <div class="pagination-links">
-                    {{ $arsips->appends(request()->query())->links('pagination::bootstrap-5') }}
+                    {{ $arsips->appends(request()->query())->onEachSide(1)->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

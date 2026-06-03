@@ -61,61 +61,32 @@
         align-items: center;
         justify-content: center;
         text-decoration: none;
-        box-shadow: none !important; /* Tanpa bayangan lampu */
+        box-shadow: none !important;
     }
 
-    /* Tombol Tampilkan (Solid Primary) */
-    .btn-modern-primary {
-        background-color: #0284c7;
-        color: #ffffff;
-        border: 1px solid #0284c7;
-    }
-    .btn-modern-primary:hover {
-        background-color: #0ea5e9; /* Biru yang lebih cerah saat dihover */
-        border-color: #0ea5e9;
-        color: #ffffff;
-    }
+    .btn-modern-primary { background-color: #0284c7; color: #ffffff; border: 1px solid #0284c7; }
+    .btn-modern-primary:hover { background-color: #0ea5e9; border-color: #0ea5e9; color: #ffffff; }
 
-    /* 🌟 PERBAIKAN: Tombol Reset (Outline to Solid Fill) 🌟 */
-    .btn-modern-reset {
-        background-color: transparent;
-        color: #0ea5e9; /* Teks warna biru cerah */
-        border: 1px solid #0ea5e9; /* Garis tepi biru cerah */
-    }
-    .btn-modern-reset:hover {
-        background-color: #0ea5e9; /* Latar belakang terisi FULL biru cerah */
-        color: #ffffff; /* Teks berubah menjadi PUTIH BERSIH */
-        border-color: #0ea5e9;
-    }
+    .btn-modern-reset { background-color: transparent; color: #0ea5e9; border: 1px solid #0ea5e9; }
+    .btn-modern-reset:hover { background-color: #0ea5e9; color: #ffffff; border-color: #0ea5e9; }
     
     .ea-table { width: 100%; border-collapse: separate; border-spacing: 0; }
     .ea-table th { 
-        padding: 15px 20px; 
-        color: #94a3b8; 
-        font-size: 11px; 
-        font-weight: 700; 
-        text-transform: uppercase; 
-        background: #f8fafc;
-        border-bottom: 2px solid #f1f5f9;
-        letter-spacing: 1px;
+        padding: 15px 20px; color: #94a3b8; font-size: 11px; font-weight: 700; 
+        text-transform: uppercase; background: #f8fafc; border-bottom: 2px solid #f1f5f9; letter-spacing: 1px;
     }
     .ea-table td { padding: 20px; font-size: 13px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
 
     /* USER INFO STYLING */
     .user-box { display: flex; align-items: center; gap: 12px; }
     .user-avatar { 
-        width: 38px; height: 38px; border-radius: 10px; 
-        background: #f1f5f9; border: 1px solid #e2e8f0;
-        display: flex; align-items: center; justify-content: center;
-        font-weight: 700; color: #1e293b;
+        width: 38px; height: 38px; border-radius: 10px; background: #f1f5f9; border: 1px solid #e2e8f0;
+        display: flex; align-items: center; justify-content: center; font-weight: 700; color: #1e293b;
     }
-    
     .user-name-log { font-weight: 700; color: #0f172a !important; display: block; }
-    
     .ip-tag { 
         font-size: 10px; color: #94a3b8; background: #f8fafc; 
-        padding: 2px 8px; border-radius: 4px; border: 1px solid #f1f5f9;
-        margin-top: 4px; display: inline-block;
+        padding: 2px 8px; border-radius: 4px; border: 1px solid #f1f5f9; margin-top: 4px; display: inline-block;
     }
 
     /* ACTIVITY BADGE DYNAMICS */
@@ -136,6 +107,63 @@
     .ea-table tbody tr { transition: 0.2s; }
     .ea-table tbody tr:hover { background: #fafbfc; }
 
+    /* =======================================================
+       ✨ 4. PAGINATION STYLING (TERPISAH & COKLAT KEEMASAN) ✨
+       ======================================================= */
+    .pagination-wrapper {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #f1f5f9;
+    }
+
+    .custom-pagination-text { font-size: 14px; color: #64748b; }
+    .custom-pagination-text span { color: #1e293b; }
+
+    /* Sembunyikan teks bawaan Laravel, kita ganti dengan teks custom */
+    .custom-pagination-nav .d-sm-flex > div:first-child { display: none !important; }
+    .custom-pagination-nav .d-sm-flex { justify-content: flex-end !important; }
+    
+    /* Layout kotak terpisah dengan Gap */
+    .custom-pagination-nav .pagination { margin-bottom: 0; display: flex; gap: 6px; box-shadow: none; flex-wrap: wrap; }
+    
+    .page-item .page-link {
+        border-radius: 8px !important; /* Membuat kotak rounded */
+        margin-left: 0; /* Menghilangkan efek menempel dari Bootstrap */
+        border: 1px solid #e2e8f0;
+        background-color: #ffffff;
+        color: #64748b;
+        font-weight: 600;
+        font-size: 13px;
+        min-width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        transition: all 0.2s ease;
+    }
+
+    .page-item .page-link:hover {
+        background-color: #f8fafc;
+        color: #C8A35A;
+        border-color: #cbd5e1;
+    }
+
+    /* 🔥 Tombol Aktif (Coklat Keemasan) 🔥 */
+    .page-item.active .page-link {
+        background-color: #C8A35A !important;
+        border-color: #C8A35A !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 10px rgba(200, 163, 90, 0.3);
+    }
+
+    .page-item.disabled .page-link {
+        background-color: #f8fafc !important;
+        color: #cbd5e1 !important;
+        border-color: #e2e8f0 !important;
+    }
+
+
     /* ======================================================= */
     /* 🌟 DARK MODE KHUSUS HALAMAN RIWAYAT 🌟                  */
     /* ======================================================= */
@@ -143,26 +171,10 @@
     body.dark-mode .filter-box { background-color: #1e293b !important; border-color: #334155 !important; }
     body.dark-mode .form-select { background-color: #0b1120 !important; color: #f8fafc !important; border-color: #334155 !important; }
     
-    body.dark-mode .btn-modern-primary {
-        background-color: #0284c7;
-        border-color: #0284c7;
-    }
-    body.dark-mode .btn-modern-primary:hover {
-        background-color: #0ea5e9;
-        border-color: #0ea5e9;
-    }
-    
-    /* 🌟 PERBAIKAN: Tombol Reset di Dark Mode 🌟 */
-    body.dark-mode .btn-modern-reset {
-        background-color: transparent; 
-        border-color: #0ea5e9; 
-        color: #0ea5e9; 
-    }
-    body.dark-mode .btn-modern-reset:hover {
-        background-color: #0ea5e9; /* Saat di-hover, full biru cerah */
-        border-color: #0ea5e9;
-        color: #ffffff; /* Tulisan icon menjadi putih bersih */
-    }
+    body.dark-mode .btn-modern-primary { background-color: #0284c7; border-color: #0284c7; }
+    body.dark-mode .btn-modern-primary:hover { background-color: #0ea5e9; border-color: #0ea5e9; }
+    body.dark-mode .btn-modern-reset { background-color: transparent; border-color: #0ea5e9; color: #0ea5e9; }
+    body.dark-mode .btn-modern-reset:hover { background-color: #0ea5e9; border-color: #0ea5e9; color: #ffffff; }
 
     body.dark-mode .ea-table th { background-color: #1e293b !important; border-bottom-color: #334155 !important; color: #cbd5e1 !important; }
     body.dark-mode .ea-table td { border-bottom-color: #1e293b !important; }
@@ -178,6 +190,34 @@
     body.dark-mode .pill-delete { background: rgba(239, 68, 68, 0.2) !important; color: #f87171 !important; border: 1px solid #ef4444 !important; }
     body.dark-mode .pill-auth { background: rgba(2, 132, 199, 0.2) !important; color: #38bdf8 !important; border: 1px solid #0284c7 !important; }
     body.dark-mode .pill-default { background: rgba(71, 85, 105, 0.2) !important; color: #94a3b8 !important; border: 1px solid #475569 !important; }
+
+    /* 🌟 DARK MODE UNTUK PAGINATION TERPISAH 🌟 */
+    body.dark-mode .pagination-wrapper { border-top-color: #1e293b; }
+    body.dark-mode .custom-pagination-text { color: #94a3b8; } 
+    body.dark-mode .custom-pagination-text span { color: #f8fafc; } 
+    
+    body.dark-mode .page-item .page-link { 
+        background-color: #1e293b !important; /* Biru Navy gelap */
+        border-color: #334155 !important; 
+        color: #cbd5e1 !important; 
+    }
+    body.dark-mode .page-item .page-link:hover {
+        background-color: #334155 !important;
+        color: #ffffff !important;
+    }
+    
+    /* Tombol Aktif Dark Mode (Tetap Coklat Keemasan) */
+    body.dark-mode .page-item.active .page-link { 
+        background-color: #C8A35A !important; 
+        border-color: #C8A35A !important; 
+        color: #ffffff !important; 
+        box-shadow: 0 4px 10px rgba(200, 163, 90, 0.2);
+    }
+    body.dark-mode .page-item.disabled .page-link { 
+        background-color: #0f172a !important; /* Navy sangat gelap */
+        color: #475569 !important; 
+        border-color: #1e293b !important; 
+    }
 </style>
 @endpush
 
@@ -290,9 +330,20 @@
                 </tbody>
             </table>
             
-            @if(method_exists($logs, 'links'))
-                <div class="mt-4 d-flex justify-content-end">
-                    {{ $logs->links('pagination::bootstrap-5') }}
+            @if(method_exists($logs, 'links') && $logs->count() > 0)
+                <div class="pagination-wrapper d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                    
+                    <div class="custom-pagination-text">
+                        Menampilkan <span class="fw-bold">{{ $logs->firstItem() ?? 0 }}</span> 
+                        hingga <span class="fw-bold">{{ $logs->lastItem() ?? 0 }}</span> 
+                        dari total <span class="fw-bold">{{ $logs->total() ?? 0 }}</span> entri arsip.
+                    </div>
+
+                    <div class="custom-pagination-nav">
+                        {{-- 🌟 KUNCI: Penambahan ->onEachSide(1) 🌟 --}}
+                        {{ $logs->onEachSide(1)->links('pagination::bootstrap-5') }}
+                    </div>
+                    
                 </div>
             @endif
         </div>
