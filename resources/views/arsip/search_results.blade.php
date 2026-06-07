@@ -87,7 +87,6 @@
     .empty-icon { font-size: 70px; color: #cbd5e1; margin-bottom: 20px; opacity: 0.7; }
     .empty-state h4 { color: #1e293b; font-weight: 700; margin-bottom: 10px; }
 
-    /* 📱 RESPONSIVE MOBILE */
     @media (max-width: 768px) {
         .ea-header { flex-direction: column; align-items: flex-start; }
         .ea-title { font-size: 20px; }
@@ -170,16 +169,25 @@
                 <tbody>
                     @forelse($arsips as $index => $item)
                     
-                    {{-- 🔥 LOGIKA CERDAS JRA & FOLDER INDUK 🔥 --}}
-                    @php
-                        preg_match('/\d{4}/', $item->tahun_berkas, $matches);
-                        $tahunInt = !empty($matches) ? (int)$matches[0] : (int)date('Y');
-                        $isAktif = $tahunInt >= 2021;
+                        {{-- 🌟 LOGIKA CERDAS JRA 🌟 --}}
+                        @php
+                            $currentYear = (int)date('Y');
+                            $rawTahun = trim($item->tahun_berkas);
+                            
+                            // Deteksi & Konversi Serial Date Excel
+                            if (is_numeric($rawTahun) && $rawTahun > 30000) {
+                                $tahunSistem = (int)date('Y', (($rawTahun - 25569) * 86400));
+                                $displayTahun = $tahunSistem;
+                            } else {
+                                preg_match('/\d{4}/', $rawTahun, $matches);
+                                $tahunSistem = !empty($matches) ? (int)$matches[0] : (int)date('Y');
+                                $displayTahun = $rawTahun; 
+                            }
 
-                        // Pecah kode (KP.05.12 menjadi KP.05) untuk menghindari Error 404
-                        $folderIndukArr = explode('.', $item->kode_arsip);
-                        $kodeFolderAsli = $folderIndukArr[0] . '.' . ($folderIndukArr[1] ?? '00');
-                    @endphp
+                            $retensiAktif = (int)($item->retensi_aktif ?? 0);
+                            $batasAktif = $tahunSistem + $retensiAktif;
+                            $isAktif = $currentYear <= $batasAktif;
+                        @endphp
 
                     <tr class="row-item" style="animation-delay: {{ $index * 0.08 }}s;">
                         <td class="col-no text-muted fw-bold" style="font-size: 15px;">
@@ -194,7 +202,7 @@
                         </td>
                         
                         <td>
-                            <div class="fw-bold text-dark" style="font-size: 14px; margin-bottom: 2px;">{{ $item->tahun_berkas }}</div>
+                            <div class="fw-bold text-dark">{{ $displayTahun }}</div>
                             @if($isAktif)
                                 <span class="ea-badge-aktif"><i class="fa-solid fa-shield-check"></i> Arsip Aktif</span>
                             @else
@@ -214,8 +222,8 @@
                                     </a>
                                 @endif
                                 
-                                {{-- Tombol ini mengarahkan ke halaman Folder Isi Induk, dan mem-filter otomatis berdasarkan judulnya! --}}
-                                <a href="{{ route('arsip.folder.isi', $kodeFolderAsli) }}?search={{ urlencode($item->nama_berkas) }}" class="btn-t-folder" title="Lompat ke Gudang Folder Arsip">
+                                {{-- 🌟 PERBAIKAN: Tombol terhubung ke Rute Pendaratan Pintar 🌟 --}}
+                                <a href="{{ route('arsip.pendaratan', $item->id) }}" class="btn-t-folder" title="Lompat & Sorot Dokumen di Folder">
                                     <i class="fa-solid fa-folder-open"></i> Buka Folder
                                 </a>
                             </div>

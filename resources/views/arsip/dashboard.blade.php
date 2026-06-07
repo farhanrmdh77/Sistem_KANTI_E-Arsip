@@ -161,11 +161,9 @@
     body.dark-mode .ea-card-info h2 { color: #ffffff; }
     body.dark-mode .ea-card-info h6 { color: #94a3b8; }
     
-    /* 🔥 PERBAIKAN: Background Kartu (Section) dan Garis Tabel 🔥 */
     body.dark-mode .ea-section { background-color: #1e293b !important; border-color: #334155 !important; }
     body.dark-mode .ea-section-header { color: #f8fafc !important; }
     
-    /* Perbaikan Tabel Volume Dokumen agar menyatu */
     body.dark-mode .ea-table th { background-color: #0f172a !important; border-bottom-color: #334155 !important; color: #94a3b8 !important; }
     body.dark-mode .ea-table td { border-bottom-color: #334155 !important; color: #cbd5e1 !important; }
     body.dark-mode .ea-table td.fw-bold { color: #ffffff !important; }
@@ -200,6 +198,36 @@
     body.dark-mode .recent-icon { background: rgba(200, 163, 90, 0.15); }
     
     body.dark-mode .health-item { border-bottom-color: #1e293b; color: #cbd5e1; }
+
+    /* ======================================================= */
+    /* 🌟 STYLING MODAL EXPORT (ADAPTIF TERANG & GELAP) 🌟     */
+    /* ======================================================= */
+    .modal-export-custom { border-radius: 16px; background: #ffffff; }
+    .modal-export-custom .modal-title { color: #0f172a; }
+    .modal-export-custom .modal-header { border-bottom: 1px solid #f1f5f9 !important; }
+    .alert-custom-info { background: #f8fafc; color: #475569; }
+    .label-custom { color: #64748b; letter-spacing: 0.5px; }
+    .form-control-custom { background: #ffffff; border: 1px solid #cbd5e1; color: #334155; border-radius: 8px; padding: 12px 15px; }
+    .form-control-custom:focus { border-color: #C8A35A; box-shadow: 0 0 0 3px rgba(200, 163, 90, 0.15); }
+    .form-control-custom::placeholder { color: #94a3b8; font-weight: 500; }
+    
+    .btn-cancel-custom { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; border-radius: 8px; transition: 0.3s; }
+    .btn-cancel-custom:hover { background: #e2e8f0; color: #1e293b; transform: translateY(-2px); }
+    .btn-submit-custom { background: #C8A35A; color: white; border-radius: 8px; transition: 0.3s; }
+    .btn-submit-custom:hover { background: #ae8b49; color: white; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(200, 163, 90, 0.3); }
+
+    /* Dark Mode Override untuk Modal Export */
+    body.dark-mode .modal-export-custom { background: #0f172a !important; border: 1px solid #1e293b !important; box-shadow: 0 15px 40px rgba(0,0,0,0.5) !important; }
+    body.dark-mode .modal-export-custom .modal-header { border-bottom: 1px solid #1e293b !important; }
+    body.dark-mode .modal-export-custom .modal-title { color: #ffffff !important; }
+    body.dark-mode .modal-export-custom .btn-close { filter: invert(1) grayscale(100%) brightness(200%); }
+    body.dark-mode .alert-custom-info { background: #1e293b !important; color: #cbd5e1 !important; }
+    body.dark-mode .label-custom { color: #94a3b8 !important; }
+    body.dark-mode .form-control-custom { background: #1e293b !important; border-color: #334155 !important; color: #f8fafc !important; }
+    body.dark-mode .form-control-custom::placeholder { color: #475569 !important; }
+    body.dark-mode .form-control-custom:focus { border-color: #C8A35A !important; background: #0b1120 !important; box-shadow: 0 0 0 3px rgba(200, 163, 90, 0.2) !important; }
+    body.dark-mode .btn-cancel-custom { background: #1e293b !important; color: #cbd5e1 !important; border-color: #334155 !important; }
+    body.dark-mode .btn-cancel-custom:hover { background: #334155 !important; color: #ffffff !important; border-color: #475569 !important; }
 </style>
 @endpush
 
@@ -209,7 +237,7 @@
     
     <div class="ea-header">
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <button type="button" class="ea-btn" data-bs-toggle="modal" data-bs-target="#modalExportRentangWaktu">
+            <button type="button" class="ea-btn" data-bs-toggle="modal" data-bs-target="#modalExportExcel">
                 <i class="fa-solid fa-file-excel"></i> Export Laporan
             </button>
         </div>
@@ -292,7 +320,7 @@
                         <i class="fa-solid fa-qrcode"></i>
                         <span>Pindai QR Map</span>
                     </button>
-                    <button type="button" class="shortcut-btn" data-bs-toggle="modal" data-bs-target="#modalExportRentangWaktu">
+                    <button type="button" class="shortcut-btn" data-bs-toggle="modal" data-bs-target="#modalExportExcel">
                         <i class="fa-solid fa-file-export"></i>
                         <span>Cetak Excel</span>
                     </button>
@@ -462,34 +490,32 @@
     </div>
     
     {{-- 🌟 MODAL EXPORT LAPORAN EXCEL 🌟 --}}
-    <div class="modal fade" id="modalExportRentangWaktu" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modalExportExcel" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
-                <div class="modal-header border-0 p-4" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; border-bottom: 3px solid #C8A35A !important;">
-                    <h5 class="modal-title fw-bold" style="font-size: 16px; margin: 0; display: flex; align-items: center; gap: 10px;">
-                        <i class="fa-solid fa-file-export" style="color: #C8A35A;"></i> Export Rekapitulasi Data
+            <div class="modal-content border-0 shadow-lg modal-export-custom">
+                <div class="modal-header border-0 p-4 pb-3">
+                    <h5 class="modal-title fw-bold">
+                        <i class="fa-solid fa-file-excel text-success me-2"></i> Export Rekapitulasi Data
                     </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                
                 <form action="{{ route('arsip.export') }}" method="GET">
-                    <div class="modal-body p-4">
-                        <div class="alert alert-info" style="background: #f0f9ff; border: 1px solid #bae6fd; color: #0369a1; border-radius: 8px; font-size: 13px;">
-                            <i class="fa-solid fa-circle-info me-2"></i> Kosongkan tanggal jika ingin mengunduh seluruh data arsip.
+                    <div class="modal-body p-4 pt-2">
+                        <div class="alert alert-custom-info border-0 mb-4 d-flex gap-2">
+                            <i class="fa-solid fa-circle-info text-warning mt-1"></i>
+                            <span style="font-size: 13px;">Masukkan awalan kode klasifikasi. Kosongkan jika ingin mengunduh seluruh data arsip di sistem.</span>
                         </div>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label style="font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 8px;">Dari Tanggal</label>
-                                <input type="date" name="start_date" class="form-control" style="border-radius: 8px; border: 1px solid #cbd5e1; padding: 12px 15px; font-size: 14px; background: #f8fafc;">
-                            </div>
-                            <div class="col-md-6">
-                                <label style="font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 8px;">Sampai Tanggal</label>
-                                <input type="date" name="end_date" class="form-control" style="border-radius: 8px; border: 1px solid #cbd5e1; padding: 12px 15px; font-size: 14px; background: #f8fafc;">
-                            </div>
+                        
+                        <div class="mb-2">
+                            <label class="form-label small fw-bold text-uppercase label-custom">Kode Folder (KP)</label>
+                            <input type="text" name="folder_kode" class="form-control form-control-custom fw-bold" placeholder="Contoh: KP.15 atau KP.02">
                         </div>
                     </div>
-                    <div class="modal-footer border-top-0 px-4 pb-4">
-                        <button type="button" class="btn btn-light fw-bold" data-bs-dismiss="modal" style="padding: 10px 20px; border-radius: 8px;">Batal</button>
-                        <button type="submit" class="btn fw-bold shadow-sm" style="background: #C8A35A; color: white; border-radius: 8px; padding: 10px 24px; border: 1px solid #C8A35A; margin: 0; transition: 0.3s;" onmouseover="this.style.background='#ae8b49'" onmouseout="this.style.background='#C8A35A'">
+                    
+                    <div class="modal-footer border-0 px-4 pb-4 pt-0 d-flex gap-2">
+                        <button type="button" class="btn btn-cancel-custom fw-bold flex-grow-1" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-submit-custom fw-bold flex-grow-1 border-0 shadow-sm">
                             <i class="fa-solid fa-download me-1"></i> Download Excel
                         </button>
                     </div>

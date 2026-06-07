@@ -51,7 +51,7 @@
     .btn-search:hover { background: #C8A35A; box-shadow: 0 3px 10px rgba(200, 163, 90, 0.3); }
 
     /* =========================================
-       🗂️ TABEL ARSIP - OPTIMASI ANTI SCROLL & RAMPING
+       🗂️ TABEL ARSIP
        ========================================= */
     .table-card { background: #ffffff; border-radius: 20px; padding: 10px 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); border: 1px solid #e2e8f0; overflow-x: hidden; }
     .ea-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
@@ -95,24 +95,14 @@
     .status-file-kosong { background: #f8fafc; color: #64748b; border: 1px dashed #cbd5e1; }
     
     /* =========================================
-       🌟 TOMBOL AKSI COMPACT & HOVER 🌟
+       🌟 TOMBOL AKSI COMPACT 🌟
        ========================================= */
     .action-group-table { display: flex; gap: 4px; justify-content: center; align-items: center; flex-wrap: nowrap; }
     
     .btn-t-view, .btn-t-edit, .btn-t-del, .btn-t-qr, .btn-t-kp {
-        padding: 6px 8px;
-        border-radius: 6px;
-        font-weight: 600;
-        font-size: 11px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        gap: 4px;
-        border: 1px solid transparent;
-        cursor: pointer;
-        margin: 0;
+        padding: 6px 8px; border-radius: 6px; font-weight: 600; font-size: 11px;
+        text-decoration: none; transition: all 0.3s ease; display: inline-flex;
+        justify-content: center; align-items: center; gap: 4px; border: 1px solid transparent; cursor: pointer; margin: 0;
     }
     
     .btn-t-view { background: #f0f9ff; color: #0284c7; border-color: #e0f2fe; }
@@ -130,82 +120,27 @@
     .btn-t-del { background: #fef2f2; color: #ef4444; border-color: #fee2e2; }
     .btn-t-del:hover { background: #ef4444; color: #ffffff; border-color: #ef4444; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(239, 68, 68, 0.2); }
 
-    /* Modal Styling */
-    .detail-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed #cbd5e1; }
-    .detail-item:last-child { border-bottom: none; }
-    .detail-label { font-size: 12px; color: #64748b; font-weight: 600; }
-    .detail-value { font-size: 13px; color: #1e293b; text-align: right; }
-    .desc-scroll { max-height: 100px; overflow-y: auto; padding-right: 5px; margin-top: 5px; }
-    .desc-scroll::-webkit-scrollbar { width: 4px; }
-    .desc-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-
-    .file-box-ada { background: #f0fdf4; border-color: #bbf7d0; }
-    .file-box-ada .file-box-title { color: #16a34a; }
-    .file-box-kosong { background: #f8fafc; border-color: #e2e8f0; }
-    .file-box-kosong .file-box-title { color: #64748b; }
-
-    /* =======================================================
-       🌟 PAGINATION STYLING (TERPISAH & COKLAT KEEMASAN) 🌟
-       ======================================================= */
+    /* Paginasi Styling */
     .pagination-wrapper { margin-top: 25px; padding-top: 20px; border-top: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
     .page-count-text { color: #0f172a; font-weight: 700; }
     
     .pagination-links nav > div.d-sm-none { display: none !important; } 
     .pagination-links nav > div.d-none.d-sm-flex { display: flex !important; justify-content: flex-end !important; width: 100%; }
-    .pagination-links nav > div.d-sm-flex > div:first-child { display: none !important; } /* Sembunyikan "Showing to..." bawaan */
+    .pagination-links nav > div.d-sm-flex > div:first-child { display: none !important; } 
     .pagination-links nav > div.d-sm-flex > div:last-child { margin-left: auto; display: flex; justify-content: flex-end; width: 100%; }
     .pagination-links nav { margin: 0; width: 100%; }
     
     .pagination { margin-bottom: 0; display: flex; gap: 6px; flex-wrap: wrap; box-shadow: none; }
     .page-item { margin: 0; }
     .page-item .page-link {
-        border-radius: 8px !important;
-        margin-left: 0 !important;
-        border: 1px solid #e2e8f0;
-        background-color: #ffffff;
-        color: #64748b;
-        font-weight: 600;
-        font-size: 13px;
-        min-width: 36px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 10px;
-        transition: all 0.2s ease;
+        border-radius: 8px !important; margin-left: 0 !important; border: 1px solid #e2e8f0;
+        background-color: #ffffff; color: #64748b; font-weight: 600; font-size: 13px;
+        min-width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+        padding: 0 10px; transition: all 0.2s ease;
     }
-    .page-item .page-link:hover {
-        background-color: #f8fafc;
-        color: #C8A35A;
-        border-color: #cbd5e1;
-    }
-    .page-item.active .page-link {
-        background-color: #C8A35A !important;
-        border-color: #C8A35A !important;
-        color: #ffffff !important;
-        box-shadow: 0 4px 10px rgba(200, 163, 90, 0.3);
-    }
-    .page-item.disabled .page-link {
-        background-color: #f8fafc !important;
-        color: #cbd5e1 !important;
-        border-color: #e2e8f0 !important;
-    }
-    
-    @media (max-width: 768px) {
-        .header-banner { padding: 25px 20px; text-align: center; }
-        .folder-info-wrapper { flex-direction: column; justify-content: center; gap: 10px; margin-bottom: 15px; }
-        .folder-desc { margin-left: 0; text-align: center; font-size: 13px; }
-        .folder-icon-box { margin: 0 auto; width: 50px; height: 50px; font-size: 24px; }
-        .folder-title { font-size: 22px; }
-        .smart-action-bar { padding: 15px; position: relative; top: 0; } 
-        .action-buttons { flex-direction: column; width: 100%; }
-        .action-buttons .btn-action { width: 100%; justify-content: center; }
-        .search-area { width: 100%; margin: 0; }
-        .bottom-bar-actions { flex-direction: column; align-items: stretch; gap: 10px; }
-        .entries-capsule { width: 100%; justify-content: space-between; } 
-        .pagination-wrapper { flex-direction: column; align-items: center; text-align: center; gap: 15px; }
-        .pagination-links nav > div.d-sm-flex > div:last-child { justify-content: center !important; margin-left: 0; }
-    }
+    .page-item .page-link:hover { background-color: #f8fafc; color: #C8A35A; border-color: #cbd5e1; }
+    .page-item.active .page-link { background-color: #C8A35A !important; border-color: #C8A35A !important; color: #ffffff !important; box-shadow: 0 4px 10px rgba(200, 163, 90, 0.3); }
+    .page-item.disabled .page-link { background-color: #f8fafc !important; color: #cbd5e1 !important; border-color: #e2e8f0 !important; }
 
     /* =========================================
        🌙 MODE GELAP (DARK MODE) SEPENUHNYA 🌙
@@ -254,56 +189,31 @@
     body.dark-mode .btn-t-del { background: #1e293b !important; color: #fb7185 !important; border-color: #334155 !important; }
     body.dark-mode .btn-t-del:hover { background: #e11d48 !important; color: #ffffff !important; border-color: #e11d48 !important; }
 
-    /* 🌟 PERBAIKAN: Tombol Atas (Cetak/Tambah) Mode Gelap (Transparan Elegan) 🌟 */
     body.dark-mode .btn-pdf { background: rgba(225, 29, 72, 0.15) !important; color: #fb7185 !important; border-color: rgba(225, 29, 72, 0.3) !important; }
     body.dark-mode .btn-pdf:hover { background: #e11d48 !important; color: white !important; border-color: #e11d48 !important; }
-    
     body.dark-mode .btn-add { background: rgba(16, 185, 129, 0.15) !important; color: #34d399 !important; border-color: rgba(16, 185, 129, 0.3) !important; }
     body.dark-mode .btn-add:hover { background: #059669 !important; color: white !important; border-color: #059669 !important; }
-    
     body.dark-mode .btn-back { background: #1e293b !important; color: #cbd5e1 !important; border-color: #334155 !important; }
     body.dark-mode .btn-back:hover { background: #334155 !important; color: white !important; border-color: #475569 !important; }
 
-    /* 🌟 DARK MODE UNTUK PAGINATION TERPISAH 🌟 */
+    /* Paginasi Mode Gelap */
     body.dark-mode .pagination-wrapper { border-top-color: #1e293b !important; }
-    
-    body.dark-mode .page-item .page-link { 
-        background-color: #1e293b !important; 
-        border-color: #334155 !important; 
-        color: #cbd5e1 !important; 
-    }
-    body.dark-mode .page-item .page-link:hover {
-        background-color: #334155 !important;
-        color: #ffffff !important;
-    }
-    
-    body.dark-mode .page-item.active .page-link { 
-        background-color: #C8A35A !important; 
-        border-color: #C8A35A !important; 
-        color: #ffffff !important; 
-        box-shadow: 0 4px 10px rgba(200, 163, 90, 0.2) !important;
-    }
-    body.dark-mode .page-item.disabled .page-link { 
-        background-color: #0f172a !important; 
-        color: #475569 !important; 
-        border-color: #1e293b !important; 
-    }
+    body.dark-mode .page-item .page-link { background-color: #1e293b !important; border-color: #334155 !important; color: #cbd5e1 !important; }
+    body.dark-mode .page-item .page-link:hover { background: #334155 !important; color: #ffffff !important; }
+    body.dark-mode .page-item.active .page-link { background-color: #C8A35A !important; border-color: #C8A35A !important; color: #ffffff !important; box-shadow: 0 4px 10px rgba(200, 163, 90, 0.2) !important; }
+    body.dark-mode .page-item.disabled .page-link { background-color: #0f172a !important; color: #475569 !important; border-color: #1e293b !important; }
 
-    /* Memastikan Teks Hitungan Halaman Berwarna Terang di Dark Mode */
     body.dark-mode .ea-table td.col-no,
     body.dark-mode .ea-table .text-muted,
-    body.dark-mode .page-count-text {
-        color: #f8fafc !important;
-    }
+    body.dark-mode .page-count-text { color: #f8fafc !important; }
 
-    /* Modal Dark Mode Styling */
+    /* Modal Dark Mode */
     body.dark-mode .modal-content { background: #0f172a !important; border-color: #1e293b !important; }
     body.dark-mode .modal-content .p-4[style*="background: #f8fafc"] { background: #1e293b !important; border-color: #334155 !important; }
     body.dark-mode .detail-item { border-bottom-color: #334155 !important; }
     body.dark-mode .detail-label { color: #94a3b8 !important; }
     body.dark-mode .detail-value { color: #f8fafc !important; }
     body.dark-mode .text-dark { color: #ffffff !important; }
-    body.dark-mode .text-muted { color: #94a3b8 !important; }
     body.dark-mode .desc-scroll::-webkit-scrollbar-thumb { background: #475569 !important; }
     body.dark-mode .file-box-ada { background: #064e3b !important; border-color: #065f46 !important; }
     body.dark-mode .file-box-ada .file-box-title { color: #34d399 !important; }
@@ -414,6 +324,7 @@
         </div>
     </form>
 
+    {{-- 🔥 FORM HAPUS MASSAL YANG SUDAH BERSIH DARI NESTED FORMS 🔥 --}}
     <form id="bulkDeleteForm" action="{{ route('arsip.bulk_delete') }}" method="POST">
         @csrf @method('DELETE')
         
@@ -442,8 +353,18 @@
                         
                         @php
                             $currentYear = (int)date('Y');
-                            preg_match('/\d{4}/', $arsip->tahun_berkas, $matches);
-                            $tahunSistem = !empty($matches) ? (int)$matches[0] : (int)date('Y');
+                            $rawTahun = trim($arsip->tahun_berkas);
+                            
+                            // Deteksi & Konversi Serial Date Excel
+                            if (is_numeric($rawTahun) && $rawTahun > 30000) {
+                                $tahunSistem = (int)date('Y', (($rawTahun - 25569) * 86400));
+                                $displayTahun = $tahunSistem;
+                            } else {
+                                preg_match('/\d{4}/', $rawTahun, $matches);
+                                $tahunSistem = !empty($matches) ? (int)$matches[0] : (int)date('Y');
+                                $displayTahun = $rawTahun; 
+                            }
+
                             $retensiAktif = (int)($arsip->retensi_aktif ?? 0);
                             $batasAktif = $tahunSistem + $retensiAktif;
                             $isInaktif = $currentYear > $batasAktif;
@@ -468,7 +389,7 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="fw-bold text-dark" style="font-size: 13px; margin-bottom: 2px;">{{ $arsip->tahun_berkas }}</div>
+                                <div class="fw-bold text-dark" style="font-size: 13px; margin-bottom: 2px;">{{ $displayTahun }}</div>
                                 @if(!$isInaktif)
                                     <span class="ea-badge-aktif" title="Masih dalam masa aktif s.d tahun {{ $batasAktif }}"><i class="fa-solid fa-shield-check"></i> Aktif (s.d {{ $batasAktif }})</span>
                                 @else
@@ -527,174 +448,6 @@
                                 </div>
                             </td>
                         </tr>
-
-                        {{-- MODAL DETAIL DOKUMEN & VERIFIKASI DOWNLOAD --}}
-                        <div class="modal fade" id="modalDetail{{ $arsip->id }}" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
-                                    <div class="modal-header border-0 p-3 px-4" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; border-bottom: 3px solid #C8A35A !important;">
-                                        <h5 class="modal-title fw-bold" style="letter-spacing: 0.5px; font-size: 15px;">
-                                            <i class="fa-solid fa-magnifying-glass-chart me-2" style="color: #C8A35A;"></i> Rincian Arsip
-                                        </h5>
-                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body p-0">
-                                        <div class="row g-0">
-                                            <div class="col-md-5 p-4" style="background: #f8fafc; border-right: 1px solid #e2e8f0;">
-                                                <h6 class="fw-bold text-dark mb-3" style="font-size: 14px;"><i class="fa-solid fa-tags text-muted me-1"></i> Identitas Dokumen</h6>
-                                                <div class="d-flex flex-column gap-1">
-                                                    <div class="detail-item">
-                                                        <span class="detail-label">Kode KP</span>
-                                                        <span class="detail-value fw-bold" style="color: #C8A35A;">{{ $arsip->kode_arsip }}</span>
-                                                    </div>
-                                                    <div class="detail-item">
-                                                        <span class="detail-label">Tahun</span>
-                                                        <span class="detail-value fw-bold">{{ $arsip->tahun_berkas }}</span>
-                                                    </div>
-                                                    <div class="detail-item">
-                                                        <span class="detail-label">Status JRA</span>
-                                                        <span class="detail-value">
-                                                            @if(!$isInaktif)
-                                                                <span class="badge bg-success rounded-pill px-2">Aktif</span>
-                                                            @else
-                                                                <span class="badge bg-danger rounded-pill px-2">Musnah</span>
-                                                            @endif
-                                                        </span>
-                                                    </div>
-                                                    <div class="detail-item">
-                                                        <span class="detail-label">Lokasi Fisik</span>
-                                                        <span class="detail-value">{{ $arsip->status_lokasi ?? 'Internal' }}</span>
-                                                    </div>
-                                                    <div class="detail-item">
-                                                        <span class="detail-label">Warna Berkas</span>
-                                                        <span class="detail-value">{{ $arsip->warna_berkas ?: '-' }}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-7 p-4 d-flex flex-column">
-                                                <div class="mb-3">
-                                                    <span style="font-size: 11px; font-weight: 700; color: #C8A35A; text-transform: uppercase; letter-spacing: 1px;">Judul Berkas</span>
-                                                    <h5 class="fw-bold text-dark mt-1 mb-0" style="line-height: 1.4; font-size: 16px;">{{ $arsip->nama_berkas }}</h5>
-                                                </div>
-                                                <div class="mb-auto">
-                                                    <span style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;">Deskripsi / Uraian</span>
-                                                    <div class="mt-1 text-muted desc-scroll" style="font-size: 12px; line-height: 1.6;">
-                                                        {!! $arsip->deskripsi_berkas ? nl2br(e($arsip->deskripsi_berkas)) : '<span class="fst-italic">Tidak ada uraian catatan tambahan.</span>' !!}
-                                                    </div>
-                                                </div>
-
-                                                <div class="mt-3 p-3 rounded-3 border {{ $arsip->file_dokumen ? 'file-box-ada' : 'file-box-kosong' }}">
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <div>
-                                                            <div class="file-box-title" style="font-size: 11px; font-weight: 700; margin-bottom: 2px;">
-                                                                <i class="fa-solid fa-paperclip"></i> File Digital
-                                                            </div>
-                                                            <div style="font-size: 12px; font-weight: 600;" class="detail-value">
-                                                                {{ $arsip->file_dokumen ? 'Tersedia di Server' : 'Kosong' }}
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        @if($arsip->file_dokumen)
-                                                            @auth
-                                                                @if(auth()->user()->role == 'admin')
-                                                                    <a href="{{ asset('storage/' . $arsip->file_dokumen) }}" download class="btn btn-sm btn-success fw-bold px-3 rounded-pill shadow-sm" style="font-size: 11px;">
-                                                                        <i class="fa-solid fa-download"></i> Unduh File
-                                                                    </a>
-                                                                @else
-                                                                    @php
-                                                                        $izin = \App\Models\IzinAkses::where('user_id', auth()->id())
-                                                                                    ->where('arsip_id', $arsip->id)
-                                                                                    ->orderBy('created_at', 'desc')
-                                                                                    ->first();
-                                                                    @endphp
-
-                                                                    @if($izin && $izin->status == 'disetujui' && $izin->hak_unduh)
-                                                                        <a href="{{ asset('storage/' . $arsip->file_dokumen) }}" download class="btn btn-sm btn-success fw-bold px-3 rounded-pill shadow-sm" style="font-size: 11px;">
-                                                                            <i class="fa-solid fa-download"></i> Unduh File
-                                                                        </a>
-                                                                    @elseif($izin && $izin->status == 'disetujui' && !$izin->hak_unduh)
-                                                                        <span class="badge bg-warning text-dark"><i class="fa-solid fa-eye"></i> Izin: Hanya Lihat</span>
-                                                                    @elseif($izin && $izin->status == 'menunggu')
-                                                                        <span class="badge bg-secondary"><i class="fa-solid fa-hourglass-half"></i> Menunggu Izin Admin</span>
-                                                                    @else
-                                                                        <form action="{{ route('qr.minta_izin', $arsip->id) }}" method="POST" class="m-0 p-0">
-                                                                            @csrf
-                                                                            <button type="submit" class="btn btn-sm btn-primary fw-bold px-3 rounded-pill shadow-sm" style="font-size: 11px;">
-                                                                                <i class="fa-solid fa-lock"></i> Minta Izin Unduh
-                                                                            </button>
-                                                                        </form>
-                                                                    @endif
-                                                                @endif
-                                                            @else
-                                                                <a href="{{ route('login') }}" class="btn btn-sm btn-warning fw-bold px-3 rounded-pill shadow-sm text-dark" style="font-size: 11px;">
-                                                                    <i class="fa-solid fa-right-to-bracket"></i> Login untuk Akses
-                                                                </a>
-                                                            @endauth
-                                                        @endif
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        {{-- MODAL QR CODE KHUSUS DOKUMEN INI --}}
-                        @auth
-                        <div class="modal fade" id="modalQR{{ $arsip->id }}" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-sm">
-                                <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
-                                    <div class="modal-header border-0 p-3" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; border-bottom: 3px solid #C8A35A !important;">
-                                        <h6 class="modal-title fw-bold" style="font-size: 14px;"><i class="fa-solid fa-qrcode text-warning"></i> Scan QR Akses</h6>
-                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <div class="modal-body text-center p-4">
-                                        <div class="bg-white p-2 d-inline-block rounded shadow-sm border mb-3">
-                                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ urlencode(route('qr.scan', $arsip->id)) }}" alt="QR Code" width="150">
-                                        </div>
-                                        <h6 class="fw-bold text-dark" style="font-size: 13px;">{{ $arsip->kode_arsip }}</h6>
-                                        <p class="text-muted small mb-0" style="line-height: 1.4;">Arahkan kamera HP ke QR Code ini untuk meminta izin akses ke dokumen terkait.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- MODAL UBAH KODE KLASIFIKASI (KP) CEPAT --}}
-                        @can('admin')
-                        <div class="modal fade" id="modalEditKP{{ $arsip->id }}" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-sm">
-                                <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
-                                    <div class="modal-header border-0 p-3 px-4" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; border-bottom: 3px solid #ca8a04 !important;">
-                                        <h6 class="modal-title fw-bold" style="font-size: 14px;"><i class="fa-solid fa-tags" style="color: #fde047;"></i> Ubah Klasifikasi</h6>
-                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <form action="{{ route('arsip.update_kp', $arsip->id) }}" method="POST">
-                                        @csrf @method('PUT')
-                                        <div class="modal-body p-4">
-                                            <div class="mb-3">
-                                                <label class="form-label text-muted small fw-bold">Kode Saat Ini</label>
-                                                <div class="fw-bold text-dark p-2 border rounded text-center" style="background: rgba(0,0,0,0.02);">{{ $arsip->kode_arsip }}</div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label text-muted small fw-bold">Kode Baru <span class="text-danger">*</span></label>
-                                                <input type="text" name="kode_arsip" class="form-control form-control-sm text-center fw-bold" value="{{ $arsip->kode_arsip }}" required placeholder="Contoh: KP.15.01">
-                                                <small class="text-muted mt-2 d-block text-center" style="font-size: 10.5px; line-height: 1.4;">Mengubah kode KP akan memindahkan dokumen ini ke Folder Klasifikasi tersebut.</small>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer border-top-0 px-4 pb-4 pt-0">
-                                            <button type="button" class="btn btn-light btn-sm fw-bold w-100 mb-2" data-bs-dismiss="modal">Batal</button>
-                                            <button type="submit" class="btn btn-sm w-100 fw-bold border-0 shadow-sm" style="background: #eab308; color: #fff;">Simpan Perubahan</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        @endcan
-                        @endauth
-
                         @empty
                         <tr>
                             <td colspan="7" class="text-center py-5" style="border: none;">
@@ -718,6 +471,189 @@
             </div>
         </div>
     </form>
+
+    {{-- 🌟 PISAHKAN SEMUA MODAL KE SINI AGAR TIDAK TERJADI BENTROK FORM (NESTED FORMS) 🌟 --}}
+    @foreach($arsips as $arsip)
+        {{-- MODAL DETAIL DOKUMEN & VERIFIKASI DOWNLOAD --}}
+        <div class="modal fade" id="modalDetail{{ $arsip->id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
+                    <div class="modal-header border-0 p-3 px-4" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; border-bottom: 3px solid #C8A35A !important;">
+                        <h5 class="modal-title fw-bold" style="letter-spacing: 0.5px; font-size: 15px;">
+                            <i class="fa-solid fa-magnifying-glass-chart me-2" style="color: #C8A35A;"></i> Rincian Arsip
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="row g-0">
+                            <div class="col-md-5 p-4" style="background: #f8fafc; border-right: 1px solid #e2e8f0;">
+                                <h6 class="fw-bold text-dark mb-3" style="font-size: 14px;"><i class="fa-solid fa-tags text-muted me-1"></i> Identitas Dokumen</h6>
+                                <div class="d-flex flex-column gap-1">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Kode KP</span>
+                                        <span class="detail-value fw-bold" style="color: #C8A35A;">{{ $arsip->kode_arsip }}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Tahun</span>
+                                        <span class="detail-value fw-bold">{{ $arsip->tahun_berkas }}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Status JRA</span>
+                                        <span class="detail-value">
+                                            @php
+                                                $currentYear = (int)date('Y');
+                                                $rawTahun = trim($arsip->tahun_berkas);
+                                                if (is_numeric($rawTahun) && $rawTahun > 30000) {
+                                                    $tahunSistem = (int)date('Y', (($rawTahun - 25569) * 86400));
+                                                } else {
+                                                    preg_match('/\d{4}/', $rawTahun, $matches);
+                                                    $tahunSistem = !empty($matches) ? (int)$matches[0] : (int)date('Y');
+                                                }
+                                                $retensiAktif = (int)($arsip->retensi_aktif ?? 0);
+                                                $batasAktif = $tahunSistem + $retensiAktif;
+                                                $isInaktif = $currentYear > $batasAktif;
+                                            @endphp
+                                            @if(!$isInaktif)
+                                                <span class="badge bg-success rounded-pill px-2">Aktif</span>
+                                            @else
+                                                <span class="badge bg-danger rounded-pill px-2">Musnah</span>
+                                            @endif
+                                        </span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Lokasi Fisik</span>
+                                        <span class="detail-value">{{ $arsip->status_lokasi ?? 'Internal' }}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Warna Berkas</span>
+                                        <span class="detail-value">{{ $arsip->warna_berkas ?: '-' }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-7 p-4 d-flex flex-column">
+                                <div class="mb-3">
+                                    <span style="font-size: 11px; font-weight: 700; color: #C8A35A; text-transform: uppercase; letter-spacing: 1px;">Judul Berkas</span>
+                                    <h5 class="fw-bold text-dark mt-1 mb-0" style="line-height: 1.4; font-size: 16px;">{{ $arsip->nama_berkas }}</h5>
+                                </div>
+                                <div class="mb-auto">
+                                    <span style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;">Deskripsi / Uraian</span>
+                                    <div class="mt-1 text-muted desc-scroll" style="font-size: 12px; line-height: 1.6;">
+                                        {!! $arsip->deskripsi_berkas ? nl2br(e($arsip->deskripsi_berkas)) : '<span class="fst-italic">Tidak ada uraian catatan tambahan.</span>' !!}
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 p-3 rounded-3 border {{ $arsip->file_dokumen ? 'file-box-ada' : 'file-box-kosong' }}">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <div class="file-box-title" style="font-size: 11px; font-weight: 700; margin-bottom: 2px;">
+                                                <i class="fa-solid fa-paperclip"></i> File Digital
+                                            </div>
+                                            <div style="font-size: 12px; font-weight: 600;" class="detail-value">
+                                                {{ $arsip->file_dokumen ? 'Tersedia di Server' : 'Kosong' }}
+                                            </div>
+                                        </div>
+                                        
+                                        @if($arsip->file_dokumen)
+                                            @auth
+                                                @if(auth()->user()->role == 'admin')
+                                                    <a href="{{ asset('storage/' . $arsip->file_dokumen) }}" download class="btn btn-sm btn-success fw-bold px-3 rounded-pill shadow-sm" style="font-size: 11px;">
+                                                        <i class="fa-solid fa-download"></i> Unduh File
+                                                    </a>
+                                                @else
+                                                    @php
+                                                        $izin = \App\Models\IzinAkses::where('user_id', auth()->id())
+                                                                    ->where('arsip_id', $arsip->id)
+                                                                    ->orderBy('created_at', 'desc')
+                                                                    ->first();
+                                                    @endphp
+
+                                                    @if($izin && $izin->status == 'disetujui' && $izin->hak_unduh)
+                                                        <a href="{{ asset('storage/' . $arsip->file_dokumen) }}" download class="btn btn-sm btn-success fw-bold px-3 rounded-pill shadow-sm" style="font-size: 11px;">
+                                                            <i class="fa-solid fa-download"></i> Unduh File
+                                                        </a>
+                                                    @elseif($izin && $izin->status == 'disetujui' && !$izin->hak_unduh)
+                                                        <span class="badge bg-warning text-dark"><i class="fa-solid fa-eye"></i> Izin: Hanya Lihat</span>
+                                                    @elseif($izin && $izin->status == 'menunggu')
+                                                        <span class="badge bg-secondary"><i class="fa-solid fa-hourglass-half"></i> Menunggu Izin Admin</span>
+                                                    @else
+                                                        <form action="{{ route('qr.minta_izin', $arsip->id) }}" method="POST" class="m-0 p-0">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-sm btn-primary fw-bold px-3 rounded-pill shadow-sm" style="font-size: 11px;">
+                                                                <i class="fa-solid fa-lock"></i> Minta Izin Unduh
+                                                            </button>
+                                                        </form>
+                                                    @endif
+                                                @endif
+                                            @else
+                                                <a href="{{ route('login') }}" class="btn btn-sm btn-warning fw-bold px-3 rounded-pill shadow-sm text-dark" style="font-size: 11px;">
+                                                    <i class="fa-solid fa-right-to-bracket"></i> Login untuk Akses
+                                                </a>
+                                            @endauth
+                                        @endif
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {{-- MODAL QR CODE KHUSUS DOKUMEN INI --}}
+        @auth
+        <div class="modal fade" id="modalQR{{ $arsip->id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
+                    <div class="modal-header border-0 p-3" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; border-bottom: 3px solid #C8A35A !important;">
+                        <h6 class="modal-title fw-bold" style="font-size: 14px;"><i class="fa-solid fa-qrcode text-warning"></i> Scan QR Akses</h6>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body text-center p-4">
+                        <div class="bg-white p-2 d-inline-block rounded shadow-sm border mb-3">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ urlencode(route('qr.scan', $arsip->id)) }}" alt="QR Code" width="150">
+                        </div>
+                        <h6 class="fw-bold text-dark" style="font-size: 13px;">{{ $arsip->kode_arsip }}</h6>
+                        <p class="text-muted small mb-0" style="line-height: 1.4;">Arahkan kamera HP ke QR Code ini untuk meminta izin akses ke dokumen terkait.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- MODAL UBAH KODE KLASIFIKASI (KP) CEPAT --}}
+        @can('admin')
+        <div class="modal fade" id="modalEditKP{{ $arsip->id }}" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
+                    <div class="modal-header border-0 p-3 px-4" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; border-bottom: 3px solid #ca8a04 !important;">
+                        <h6 class="modal-title fw-bold" style="font-size: 14px;"><i class="fa-solid fa-tags" style="color: #fde047;"></i> Ubah Klasifikasi</h6>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <form action="{{ route('arsip.update_kp', $arsip->id) }}" method="POST">
+                        @csrf @method('PUT')
+                        <div class="modal-body p-4">
+                            <div class="mb-3">
+                                <label class="form-label text-muted small fw-bold">Kode Saat Ini</label>
+                                <div class="fw-bold text-dark p-2 border rounded text-center" style="background: rgba(0,0,0,0.02);">{{ $arsip->kode_arsip }}</div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label text-muted small fw-bold">Kode Baru <span class="text-danger">*</span></label>
+                                <input type="text" name="kode_arsip" class="form-control form-control-sm text-center fw-bold" value="{{ $arsip->kode_arsip }}" required placeholder="Contoh: KP.15.01">
+                                <small class="text-muted mt-2 d-block text-center" style="font-size: 10.5px; line-height: 1.4;">Mengubah kode KP akan memindahkan dokumen ini ke Folder Klasifikasi tersebut.</small>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-top-0 px-4 pb-4 pt-0">
+                            <button type="button" class="btn btn-light btn-sm fw-bold w-100 mb-2" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-sm w-100 fw-bold border-0 shadow-sm" style="background: #eab308; color: #fff;">Simpan Perubahan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @endcan
+        @endauth
+    @endforeach
     
     @auth
     @can('admin')
@@ -741,6 +677,14 @@
                     targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     targetElement.classList.add('row-target-blink');
                 }, 400); 
+            } else {
+                Swal.fire({
+                    toast: true, position: 'top-end', icon: 'info', title: 'Pendaratan Dialihkan',
+                    text: 'Gunakan kotak pencarian untuk menemukan dokumen ini.',
+                    showConfirmButton: false, timer: 5000,
+                    background: document.body.classList.contains('dark-mode') ? '#1e293b' : '#ffffff',
+                    color: document.body.classList.contains('dark-mode') ? '#ffffff' : '#334155'
+                });
             }
         }
 

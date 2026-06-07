@@ -16,26 +16,44 @@ Route::get('/qr/scan/{id}', [IzinAksesController::class, 'scanQR'])->name('qr.sc
 Route::get('/folder/{kode}', [ArsipController::class, 'folderIsi'])->name('arsip.folder.isi');
 
 // Pendaratan Cerdas dari Notifikasi Menuju Halaman Paginasi
+// 🌟 Pendaratan Cerdas dari Notifikasi & Pencarian Menuju Halaman Paginasi 🌟
+// 🌟 Pendaratan Cerdas dari Notifikasi & Pencarian Menuju Halaman Paginasi 🌟
 Route::get('/arsip/pendaratan/{id}', function($id) {
-    $arsip = \App\Models\Arsip::withTrashed()->findOrFail($id);
+    // 1. Cari arsip (Termasuk yang di tong sampah untuk pengecekan awal)
+    $arsip = \App\Models\Arsip::withTrashed()->find($id);
     
-    // Dapatkan folder induk (Misal KP.15.01 -> KP.15)
-    $docInduk = explode('.', $arsip->kode_arsip);
-    $linkInduk = $docInduk[0] . '.' . ($docInduk[1] ?? '00');
+    if (!$arsip) {
+        return redirect()->route('arsip.dashboard')->with('error', 'Dokumen tersebut sudah dihapus permanen dari sistem.');
+    }
+
+    // 2. Jika dokumen ternyata ada di Tong Sampah, arahkan admin ke Kelola Sampah
+    if ($arsip->trashed()) {
+        return redirect()->route('arsip.trash')->with('info', 'Dokumen yang Anda tuju sedang berada di dalam Tong Sampah.');
+    }
     
-    // MENGHITUNG POSISI HALAMAN: Mengurutkan semua ID seperti tabel aslinya
-    $allArsip = \App\Models\Arsip::withTrashed()
-        ->where('kode_arsip', 'like', $linkInduk . '%')
-        ->latest() 
+    // 3. Deteksi kode induk cerdas (Mengatasi error LAINNYA.00)
+    $kodeLengkap = $arsip->kode_arsip;
+    if (strpos($kodeLengkap, '.') !== false) {
+        $docInduk = explode('.', $kodeLengkap);
+        $linkInduk = $docInduk[0] . '.' . ($docInduk[1] ?? '00');
+    } else {
+        $linkInduk = $kodeLengkap;
+    }
+    
+    // 4. MENGHITUNG POSISI HALAMAN SECARA AKURAT
+    // Menghapus withTrashed() agar tabel yang dihitung HANYA data aktif.
+    // Menambahkan orderBy('id', 'desc') sebagai pengunci absolut jika jam uploadnya sama.
+    $allArsip = \App\Models\Arsip::where('kode_arsip', 'like', $linkInduk . '%')
+        ->orderBy('created_at', 'desc')
+        ->orderBy('id', 'desc')
         ->pluck('id')
         ->toArray();
         
     $posisi = array_search($arsip->id, $allArsip);
     
-    // Asumsi default 10 baris data per halaman (paginasi)
+    // Asumsi tabel menampilkan 10 baris per halaman
     $page = ($posisi !== false) ? floor($posisi / 10) + 1 : 1;
     
-    // Lemparkan ke halaman tersebut + tempelkan ID baris (Anchor)
     return redirect()->to(route('arsip.folder.isi', ['kode' => $linkInduk, 'page' => $page]) . '#arsip-' . $arsip->id);
 })->name('arsip.pendaratan');
 

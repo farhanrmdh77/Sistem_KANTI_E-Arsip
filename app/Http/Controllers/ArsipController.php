@@ -210,63 +210,6 @@ class ArsipController extends Controller
         return back()->with('success', 'Folder <strong>' . $kode . '</strong> beserta seluruh isinya berhasil dipindahkan ke Tong Sampah!');
     }
 
-    public function trash()
-    {
-        $arsips = Arsip::onlyTrashed()->latest()->get();
-        $folders = Folder::onlyTrashed()->latest()->get(); 
-
-        return view('arsip.trash', compact('arsips', 'folders'));
-    }
-
-    public function restoreFolder($id)
-    {
-        $folder = Folder::onlyTrashed()->findOrFail($id);
-        $kode = $folder->kode_folder;
-
-        Arsip::onlyTrashed()->where('kode_arsip', 'LIKE', $kode . '%')->restore();
-
-        $folder->restore();
-
-        ActivityLog::create([
-            'user_id' => auth()->id(),
-            'activity' => 'Pulihkan Folder',
-            'description' => "Memulihkan kategori folder beserta isinya: $kode",
-            'ip_address' => request()->ip()
-        ]);
-
-        return back()->with('success', "Folder <strong>$kode</strong> beserta isinya berhasil dipulihkan dari kelola sampah!");
-    }
-
-    public function forceDeleteFolder($id)
-    {
-        $folder = Folder::onlyTrashed()->findOrFail($id);
-        $kode = $folder->kode_folder;
-
-        $arsips = Arsip::withTrashed()->where('kode_arsip', 'LIKE', $kode . '%')->get();
-
-        foreach ($arsips as $arsip) {
-            if ($arsip->file_dokumen) {
-                if (\Illuminate\Support\Facades\Storage::disk('public')->exists($arsip->file_dokumen)) {
-                    \Illuminate\Support\Facades\Storage::disk('public')->delete($arsip->file_dokumen);
-                } else if (file_exists(public_path('storage/' . $arsip->file_dokumen))) {
-                    unlink(public_path('storage/' . $arsip->file_dokumen));
-                }
-            }
-            $arsip->forceDelete();
-        }
-
-        $folder->forceDelete();
-
-        ActivityLog::create([
-            'user_id' => auth()->id(),
-            'activity' => 'Hapus Permanen Folder',
-            'description' => "Memusnahkan folder $kode beserta " . $arsips->count() . " arsip fisik di dalamnya.",
-            'ip_address' => request()->ip()
-        ]);
-
-        return back()->with('success', "Folder <strong>$kode</strong> beserta seluruh dokumen di dalamnya berhasil dimusnahkan secara permanen!");
-    }
-    
     public function folderIsi(Request $request, $kode)
     {
         $kodeSearch = strtoupper(trim($kode));
@@ -438,12 +381,10 @@ class ArsipController extends Controller
             return redirect()->route('arsip.folders')->with('success', 'Data Excel berhasil diimport dan disinkronkan ke folder!');
             
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
-             // Jika error berasal dari aturan format internal library Excel
              $failures = $e->failures();
              $msg = "Terjadi kesalahan di baris " . $failures[0]->row() . ".";
              return back()->with('error', 'Gagal memproses: ' . $msg);
         } catch (\Exception $e) {
-            // Jika error berasal dari satpam ArsipImport (Exception custom kita)
             return back()->with('error', 'Gagal memproses file Excel: ' . $e->getMessage());
         }
     }
@@ -581,27 +522,43 @@ class ArsipController extends Controller
         return view('arsip.search_results', compact('arsips', 'keyword'));
     }
 
-    public function export(Request $request) 
+    // =========================================================
+    // 🌟 FUNGSI EXPORT EXCEL BERDASARKAN KODE FOLDER KLASIFIKASI
+    // =========================================================
+    public function export(Request $request)
     {
-        $startDate = $request->start_date;
-        $endDate = $request->end_date;
+        // Menangkap isian kode folder (Jika kosong, artinya ambil semua data)
+        $kode = strtoupper(trim($request->folder_kode));
 
-        $desc = 'Mengunduh rekap data seluruh arsip.';
-        $fileName = 'Laporan_E-Arsip_FULL_' . date('d-m-Y') . '.xlsx';
+        $query = \App\Models\Arsip::query();
 
-        if ($startDate && $endDate) {
-            $desc = "Mengunduh rekap arsip dari " . date('d/m/Y', strtotime($startDate)) . " s/d " . date('d/m/Y', strtotime($endDate));
-            $fileName = 'Laporan_E-Arsip_' . $startDate . '_sampai_' . $endDate . '.xlsx';
+        if (!empty($kode)) {
+            $query->where('kode_arsip', 'like', $kode . '%');
         }
 
+        // Ambil data yang sudah disaring
+        $arsips = $query->latest()->get();
+
+        // 🌟 CATAT LOG AKTIVITAS 🌟
         ActivityLog::create([
-            'user_id' => auth()->id(), 
-            'activity' => 'Export Excel', 
-            'description' => $desc, 
+            'user_id' => auth()->id(),
+            'activity' => 'Export Excel',
+            'description' => 'Mengunduh rekapitulasi data Excel ' . ($kode ? "untuk klasifikasi $kode" : 'keseluruhan arsip'),
             'ip_address' => $request->ip()
         ]);
-        
-        return Excel::download(new \App\Exports\ArsipExport($startDate, $endDate), $fileName);
+
+        // ================================================================
+        // CARA MENGUNDUH VIEW HTML MENJADI FILE MS-EXCEL TANPA LIBRARY
+        // ================================================================
+        $fileName = 'Rekap_Arsip_' . ($kode ?: 'Semua') . '.xls';
+
+        return response(view('exports.arsip_excel', compact('arsips', 'kode')))
+            ->header('Content-Type', 'application/vnd.ms-excel; charset=utf-8')
+            ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"');
+            
+        // Catatan: Jika ingin menggunakan Maatwebsite (Excel::download), hapus kode return di atas 
+        // dan gunakan format di bawah ini:
+        // return Excel::download(new \App\Exports\ArsipExport($kode), $fileName . 'x');
     }
 
     public function restore(Request $request, $id)

@@ -305,7 +305,7 @@
     </div>
 </div>
 
-{{-- 🌟 MODAL IMPORT EXCEL (DIPERBAIKI) 🌟 --}}
+{{-- 🌟 MODAL IMPORT EXCEL (SUDAH SEMPURNA) 🌟 --}}
 <div class="modal fade" id="modalImportExcel" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content ea-modal-content">
